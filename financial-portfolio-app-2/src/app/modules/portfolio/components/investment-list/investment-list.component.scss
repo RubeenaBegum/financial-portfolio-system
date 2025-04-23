@@ -1,0 +1,23 @@
+.investment-list-container {
+    padding: 20px;
+  
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+  
+    .spinner {
+      margin: 20px auto;
+    }
+  }
+  
+  mat-table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-icon {
+    vertical-align: middle;
+  }

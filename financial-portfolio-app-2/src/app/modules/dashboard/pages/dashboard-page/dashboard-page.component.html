@@ -1,0 +1,19 @@
+<div class="dashboard-container">
+    <h1>Portfolio Dashboard</h1>
+    
+    <div class="grid">
+      <div class="card summary-section">
+        <app-summary-cards [summary]="summary$ | async"></app-summary-cards>
+      </div>
+      
+      <div class="card performance-section">
+        <h2>Performance</h2>
+        <app-performance-chart [data]="marketTrends$ | async"></app-performance-chart>
+      </div>
+      
+      <div class="card allocation-section">
+        <h2>Asset Allocation</h2>
+        <app-allocation-chart [chartData]="allocationData$ | async"></app-allocation-chart>
+      </div>
+    </div>
+  </div>

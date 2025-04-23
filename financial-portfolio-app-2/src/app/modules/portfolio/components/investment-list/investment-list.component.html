@@ -1,0 +1,57 @@
+<div class="investment-list-container">
+    <div class="list-header">
+      <h2>Your Investments</h2>
+      <button mat-raised-button color="primary" (click)="openAddInvestmentDialog()">
+        <mat-icon>add</mat-icon> Add Investment
+      </button>
+    </div>
+  
+    <mat-table [dataSource]="investments$ | async" class="mat-elevation-z8">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      </ng-container>
+  
+      <!-- Asset Type Column -->
+      <ng-container matColumnDef="assetType">
+        <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.assetType}}</mat-cell>
+      </ng-container>
+  
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.quantity}}</mat-cell>
+      </ng-container>
+  
+      <!-- Purchase Price Column -->
+      <ng-container matColumnDef="purchasePrice">
+        <mat-header-cell *matHeaderCellDef>Purchase Price</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.purchasePrice | currency}}</mat-cell>
+      </ng-container>
+  
+      <!-- Current Value Column -->
+      <ng-container matColumnDef="currentValue">
+        <mat-header-cell *matHeaderCellDef>Current Value</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{(element.currentPrice || element.purchasePrice) * element.quantity | currency}}
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="deleteInvestment(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-spinner *ngIf="loading$ | async" diameter="40" class="spinner"></mat-spinner>
+  </div>

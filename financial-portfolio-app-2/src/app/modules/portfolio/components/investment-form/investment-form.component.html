@@ -1,0 +1,59 @@
+<form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Asset Type</label>
+      <select formControlName="assetType">
+        <option value="">Select Asset Type</option>
+        <option *ngFor="let type of assetTypes" [value]="type">{{type}}</option>
+      </select>
+      <div *ngIf="investmentForm.get('assetType')?.errors?.required && investmentForm.get('assetType')?.touched" 
+           class="error-message">
+        Asset type is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" formControlName="name">
+      <div *ngIf="investmentForm.get('name')?.errors?.required && investmentForm.get('name')?.touched" 
+           class="error-message">
+        Name is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="number" formControlName="quantity" appCurrencyInput>
+      <div *ngIf="investmentForm.get('quantity')?.errors?.required && investmentForm.get('quantity')?.touched" 
+           class="error-message">
+        Quantity is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Purchase Price</label>
+      <input type="number" formControlName="purchasePrice" appCurrencyInput>
+      <div *ngIf="investmentForm.get('purchasePrice')?.errors?.required && investmentForm.get('purchasePrice')?.touched" 
+           class="error-message">
+        Purchase price is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Purchase Date</label>
+      <input type="date" formControlName="purchaseDate">
+      <div *ngIf="investmentForm.get('purchaseDate')?.errors?.required && investmentForm.get('purchaseDate')?.touched" 
+           class="error-message">
+        Purchase date is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea formControlName="notes"></textarea>
+    </div>
+  
+    <div class="form-actions">
+      <button type="button" class="secondary-btn" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="primary-btn" [disabled]="investmentForm.invalid">Save</button>
+    </div>
+  </form>

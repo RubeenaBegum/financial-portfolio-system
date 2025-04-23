@@ -1,0 +1,37 @@
+<div class="summary-grid">
+    <mat-card class="summary-card">
+      <mat-card-header>
+        <mat-card-title>Total Value</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="value">{{ summary?.totalValue | currency }}</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="summary-card">
+      <mat-card-header>
+        <mat-card-title>Total Cost</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="value">{{ summary?.totalCost | currency }}</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="summary-card" [class.positive]="summary?.profit >= 0" [class.negative]="summary?.profit < 0">
+      <mat-card-header>
+        <mat-card-title>Profit/Loss</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="value">{{ summary?.profit | currency }} ({{ summary?.profitPercentage | percentageChange }})</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="summary-card">
+      <mat-card-header>
+        <mat-card-title>Investments</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="value">{{ summary?.count }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
